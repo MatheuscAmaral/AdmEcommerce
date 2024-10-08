@@ -56,7 +56,7 @@ const Sidebar = () => {
 
 
   return (
-    //@ts-ignore
+    // @ts-expect-error
     <Card className="hidden xl:block h-svh relative w-full p-4 shadow-xl shadow-blue-gray-900/5 select-none max-w-72">
       <div className=" flex items-center gap-2 pt-4 pb-1 ml-2">
         <Image src={logo} alt="logo" width={42} height={42}  className="h-11 my-2" />
@@ -64,7 +64,7 @@ const Sidebar = () => {
       </div>
 
       <div className="p-2">
-        {/* @ts-ignore */}
+        {/*  @ts-expect-error */}
         <Input
           icon={<MagnifyingGlassIcon className="h-5 w-5" />}
           label="Pesquisar..."
@@ -72,13 +72,13 @@ const Sidebar = () => {
         />
       </div>
 
-      {/* @ts-ignore */}
+      {/*  @ts-expect-error */}
       <List>
         <div className="overflow-auto max-h-[calc(100vh-200px)] pb-10 ">
           {filteredItems.map((item: {icon: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; label: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }, index: Key | null | undefined) => (
-            // @ts-ignore
+            //  @ts-expect-error
             <ListItem className="my-1" key={index} onClick={() => handleNavigate(item.path)}>
-              {/* @ts-ignore */}
+              {/*  @ts-expect-error */}
               <ListItemPrefix>{item.icon}</ListItemPrefix>
               {item.label}
             </ListItem>

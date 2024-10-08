@@ -115,7 +115,6 @@ const ModalProducts = () => {
       return response.data.url; 
     } catch (error: any) {
       if (error.response.data.error != "Token inválido!") {
-        // toast.error("Ocorreu um erro ao salvar a imagem!");
         setError(true);
       }
       return "error";
