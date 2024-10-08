@@ -13,6 +13,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table"
+import Image from "next/image";
 import { MoreHorizontal } from "lucide-react"
 import ModalProducts from "../../app/components/modalCreateProducts";
 import { PiCaretUpDownBold } from "react-icons/pi";
@@ -57,9 +58,11 @@ export const columns: ColumnDef<RowProps>[] = [
     cell: ({ row }) => (
       <div className="flex justify-center">
         <div className="w-12 h-12 overflow-hidden rounded-full">
-          <img
+          <Image
+            width={12} height={12}
             src={row.getValue("image")}
-            className="w-full h-full object-cover rounded-md"
+            alt="product_image"
+            className="object-cover rounded-md"
           />
         </div>
       </div>
