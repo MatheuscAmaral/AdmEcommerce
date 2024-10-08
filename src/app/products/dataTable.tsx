@@ -137,8 +137,7 @@ export const columns: ColumnDef<RowProps>[] = [
       );
     },
     cell: ({ row }) => {
-      const size = row.getValue("size") as { size: number };
-    
+  
       return (
         <div className="capitalize">
           {`${row.getValue("size")}g`}
@@ -263,8 +262,6 @@ export const columns: ColumnDef<RowProps>[] = [
     header: "Ações",
     enableHiding: false,
     cell: ({ row }) => {
-      const payment = row.original
-
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
