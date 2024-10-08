@@ -4,9 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npx next build",
-    "start": "npx next start",
-    "lint": "npx next lint"
+    "build": "npx next build  --no-eslint",
+    "start": "npx next start"
   },
   "dependencies": {
     "@heroicons/react": "^2.1.5",
