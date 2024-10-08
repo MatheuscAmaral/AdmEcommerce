@@ -10,7 +10,7 @@ import {
   useState,
 } from "react";
 import { IoLogOutOutline } from "react-icons/io5";
-import { RiUserSettingsFill } from "react-icons/ri";
+import Image from "next/image";
 import {
   Card,
   List,
@@ -40,7 +40,7 @@ const Sidebar = () => {
   };
 
   const filteredItems = (() => {
-      let items = [
+      const items = [
         { label: "Início", icon: <FaHome fontSize={24} />, path: "/" },
         {
           label: "Produtos",
@@ -59,7 +59,7 @@ const Sidebar = () => {
     //@ts-ignore
     <Card className="hidden xl:block h-svh relative w-full p-4 shadow-xl shadow-blue-gray-900/5 select-none max-w-72">
       <div className=" flex items-center gap-2 pt-4 pb-1 ml-2">
-        <img src={logo} alt="brand" className="h-11 my-2" />
+        <Image src={logo} alt="logo" width={42} height={42}  className="h-11 my-2" />
         <p className="text-md font-medium">Rwa Suplementos</p>
       </div>
 

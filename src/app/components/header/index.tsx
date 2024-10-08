@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from "react";
+import Image from 'next/image';
 import { FaHome, FaUserAlt } from "react-icons/fa";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { IoClose, IoLogOutOutline } from "react-icons/io5";
@@ -21,7 +22,10 @@ const Header = () => {
           mobile ? "hidden" : "flex xl:hidden  justify-between items-center"
         } px-3 bg-white w-full`}
       >
-        <img src={logo} alt="logo" className=" w-20 py-3" />
+        <div className=" flex items-center gap-2 pb-1 ml-2">
+          <Image src={logo} alt="logo" width={40} height={40} />
+          <p className="text-md font-medium">Rwa Suplementos</p>
+        </div>
 
         <button
           className="p-3 my-5 rounded-lg hover:bg-gray-100"
@@ -37,7 +41,10 @@ const Header = () => {
         } items-center bg-white w-full h-svh absolute z-50 py-1 px-2`}
       >
         <div className="flex justify-between items-center w-full">
-          <img src={logo} alt="logo" className="h-24 py-3" />
+          <div className=" flex items-center gap-2 pt-4 pb-1 ml-2">
+            <Image src={logo} alt="logo" width={42} height={42}  className="h-11 my-2" />
+            <p className="text-md font-medium">Rwa Suplementos</p>
+          </div>
 
           <button
             className="p-2 my-2 rounded-lg hover:bg-gray-100"

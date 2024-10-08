@@ -26,7 +26,6 @@ import { IoIosImages } from "react-icons/io";
 import { FaTrash } from "react-icons/fa"
 import { FormEvent, useState } from "react"
 import api from "../../../api"
-import { Toaster } from "@/components/ui/toaster";
 
 const ModalProducts = () => {
   const [link, setLink] = useState("");
@@ -92,10 +91,6 @@ const ModalProducts = () => {
       await api.post('/products', data);
       closeModal();
     } catch (error) {
-      Toaster({
-        title: "Erro",
-        description: String(error)
-      })
     } finally {
       setLoading(false);
     }
@@ -103,26 +98,25 @@ const ModalProducts = () => {
 
   const saveImage = async () => {
     if (!file) {
-      Toaster({
-        title: "Erro",
-        description: "Por favor, selecione um arquivo para fazer upload."
-      });
 
+      setError(true);
       return "error"; 
     }
-  
+    
     const formData = new FormData();
     formData.append("file", file);
-  
+    
     try {
       const response = await api.post("/upload",
         formData,
       );
-  
+      
+      setError(false);
       return response.data.url; 
     } catch (error: any) {
       if (error.response.data.error != "Token inválido!") {
         // toast.error("Ocorreu um erro ao salvar a imagem!");
+        setError(true);
       }
       return "error";
     }
