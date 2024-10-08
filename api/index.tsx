@@ -1,9 +1,12 @@
 import axios from "axios";
 
-const isLocal = typeof window !== 'undefined' && window.location.hostname === "localhost";
+const apiUrl = process.env.NODE_ENV === 'production' 
+  ? 'https://rwa-api-2-0.vercel.app'
+  : 'http://localhost:3333';
+
 
 const api = axios.create({
-    baseURL: isLocal ? "http://localhost:3333" : "https://rwa-api-2-0.vercel.app"
+    baseURL: apiUrl
 });
 
 export default api;
