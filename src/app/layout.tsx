@@ -20,6 +20,7 @@ export default function RootLayout({
           rel="stylesheet" 
         />
       </head>
+      
       <body className="flex flex-col xl:flex-row gap-7 bg-gray-50"> 
         <div>
           <Header />

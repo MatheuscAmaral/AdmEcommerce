@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter } from 'next/navigation';
 import {
   JSXElementConstructor,
   Key,
@@ -28,6 +29,11 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 const Sidebar = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const router = useRouter();
+
+  const handleNavigate = (route: string) => {
+    router.push(route);
+  };
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -39,15 +45,9 @@ const Sidebar = () => {
         {
           label: "Produtos",
           icon: <IoCart fontSize={24} />,
-          path: "/produtos",
-        },
-        {
-          label: "Usuários",
-          icon: <RiUserSettingsFill fontSize={24} />,
-          path: "/usuarios",
+          path: "/products",
         }
       ];
-    
 
     return items.filter((item: { label: string }) =>
       item.label.toLowerCase().includes(searchTerm.toLowerCase())
@@ -75,9 +75,9 @@ const Sidebar = () => {
       {/* @ts-ignore */}
       <List>
         <div className="overflow-auto max-h-[calc(100vh-200px)] pb-10 ">
-          {filteredItems.map((item: { icon: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; label: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }, index: Key | null | undefined) => (
+          {filteredItems.map((item: {icon: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; label: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }, index: Key | null | undefined) => (
             // @ts-ignore
-            <ListItem className="my-1" key={index}>
+            <ListItem className="my-1" key={index} onClick={() => handleNavigate(item.path)}>
               {/* @ts-ignore */}
               <ListItemPrefix>{item.icon}</ListItemPrefix>
               {item.label}
