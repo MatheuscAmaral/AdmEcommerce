@@ -24,14 +24,16 @@ import { Label } from "@/components/ui/label"
 import { BsCartPlus } from "react-icons/bs";
 import { IoIosImages } from "react-icons/io";
 import { FaTrash } from "react-icons/fa"
-import { FormEvent, useState } from "react"
-import api from "../../../api"
+import { FormEvent, useContext, useEffect, useState } from "react"
+import api from "../../../../api"
+import { ReloadContext } from "@/hooks/reloadContent";
+import FileUpload from "../fileUpload";
 
 const ModalProducts = () => {
-  const [link, setLink] = useState("");
+  const { updatedData, file: updatedFile } = useContext(ReloadContext);
+  const [file, setFile] = useState<File | null>(updatedFile || null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [file, setFile] = useState<File | null>(null);
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState<number | string>("");
   const [size, setSize] = useState<number | string>("");
@@ -41,23 +43,13 @@ const ModalProducts = () => {
   const [typePack, setTypePack] = useState("");
   const [status, setStatus] = useState("");
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = e.target.files?.[0];
-
-    if (selectedFile) {
-      setFile(selectedFile);
-      setLink(URL.createObjectURL(selectedFile));
-    }
-  };
-
   const closeModal = () => {
     const closeButton = document.getElementById("close");
      
     if (closeButton) {
       closeButton.click();
     }
-    
-    setLink("");
+
     setTitle("");
     setPrice("");
     setStock("");
@@ -68,6 +60,13 @@ const ModalProducts = () => {
     setTypePack("");
     setStatus("");
   }
+
+
+  useEffect(() => {
+    if (updatedFile) {
+      setFile(updatedFile);
+    }
+  }, [updatedFile])
 
   const createProduct = async (e: FormEvent) => {
     e.preventDefault();
@@ -90,6 +89,7 @@ const ModalProducts = () => {
       
       await api.post('/products', data);
       closeModal();
+      updatedData();
     } catch (error) {
     } finally {
       setLoading(false);
@@ -124,11 +124,11 @@ const ModalProducts = () => {
   return (
       <Dialog>
         <DialogTrigger asChild>
-          <Button className="flex items-center gap-1 bg-blue-900 text-white hover:bg-blue-800">
+          <Button className="flex items-center gap-1 bg-primaryColor text-white hover:bg-secondaryColor">
             <BsCartPlus fontSize={17}/> Cadastrar
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:w-full max-w-2xl overflow-y-auto">
+        <DialogContent className="sm:w-full max-w-2xl">
           <DialogHeader>
             <DialogTitle>Criar Produto</DialogTitle>
             <DialogDescription>
@@ -137,47 +137,8 @@ const ModalProducts = () => {
           </DialogHeader>
 
           <form onSubmit={(e) => createProduct(e)}>
-            <section className="flex flex-col gap-6 py-4 pb-10 justify-start w-full overflow-y-auto" style={{ maxHeight: "750px" }}>
-              <div
-                className={`${
-                  link != "" ? "h-64" : "h-48 py-14"
-                } flex justify-center transition-all w-full border-dashed ${
-                  error && !link && "border-red-500"
-                } border-2 rounded-lg relative text-md font-medium text-gray-700`}
-              >
-                <input
-                  required
-                  onChange={(e) => handleFileChange(e)}
-                  type="file"
-                  name="image"
-                  accept="image/png, image/jpeg"
-                  id="image"
-                  className="absolute cursor-pointer top-0 w-full h-48 opacity-0"
-                />
-
-                {link ? (
-                  <div className="flex justify-center">
-                    <svg className="p-10 flex justify-center">
-                      <image href={link} className="my-class w-80" />
-                    </svg>
-                  </div>
-                ) : (
-                  <div className="flex flex-col gap-2 items-center justify-center ">
-                    <IoIosImages fontSize={40} />
-                    <p className="w-full px-3 text-center text-sm md:text-lg">
-                      Clique aqui para selecionar uma imagem.
-                    </p>
-                  </div>
-                )}
-              </div>
-
-              <FaTrash
-                fontSize={22}
-                onClick={() => setLink("")}
-                className={`${
-                  link ? "block" : "hidden"
-                } absolute cursor-pointer top-28 right-9 hover:text-red-700 transition-all`}
-              />
+            <section className="flex flex-col gap-6 py-4 pb-10 justify-start w-full overflow-y-auto relative" style={{ maxHeight: "600px" }}>
+              <FileUpload row={null} error={error}/>
 
               <div className="flex flex-col gap-2 w-full">
                 <Label htmlFor="description">

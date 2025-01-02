@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "./components/header";
 import Sidebar from "./components/sidebar";
+import ReloadProvider from "@/hooks/reloadContent";
 
 export const metadata: Metadata = {
   title: "Adm-Ecommerce",
@@ -22,12 +23,14 @@ export default function RootLayout({
       </head>
       
       <body className="flex flex-col xl:flex-row gap-7 bg-gray-50"> 
-        <div>
+        <ReloadProvider>
+          <div>
           <Header />
           <Sidebar />
         </div>
 
         {children}
+        </ReloadProvider>
       </body>
     </html>
   );

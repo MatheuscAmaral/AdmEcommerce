@@ -1,6 +1,5 @@
 'use client'
 
-import { useRouter } from 'next/navigation';
 import {
   JSXElementConstructor,
   Key,
@@ -9,8 +8,6 @@ import {
   ReactPortal,
   useState,
 } from "react";
-import { IoLogOutOutline } from "react-icons/io5";
-import Image from "next/image";
 import {
   Card,
   List,
@@ -18,18 +15,21 @@ import {
   ListItemPrefix,
   Input,
 } from "@material-tailwind/react";
-
+import { IoCart } from "react-icons/io5";
+import { useRouter } from 'next/navigation';
+import { IoLogOutOutline } from "react-icons/io5";
+import { FaUserAlt, FaHome, FaUsers } from "react-icons/fa";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { FaTruckRampBox } from "react-icons/fa6";
+import { HiCreditCard } from "react-icons/hi2";
+import Image from "next/image";
 import logoObj from "../../images/rwalogo2.png";
 
-const logo = logoObj.src;
-
-import { FaUserAlt, FaHome } from "react-icons/fa";
-import { IoCart } from "react-icons/io5";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 const Sidebar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const router = useRouter();
+  const logo = logoObj.src;
 
   const handleNavigate = (route: string) => {
     router.push(route);
@@ -46,7 +46,22 @@ const Sidebar = () => {
           label: "Produtos",
           icon: <IoCart fontSize={24} />,
           path: "/products",
-        }
+        },
+        {
+          label: "Pedidos",
+          icon: <FaTruckRampBox fontSize={24} />,
+          path: "/orders",
+        },
+        {
+          label: "Clientes",
+          icon: <FaUsers fontSize={24} />,
+          path: "/clients",
+        },
+        {
+          label: "Gateways",
+          icon: <HiCreditCard fontSize={24} />,
+          path: "/gateways",
+        },
       ];
 
     return items.filter((item: { label: string }) =>
@@ -57,13 +72,13 @@ const Sidebar = () => {
 
   return (
     // @ts-expect-error
-    <Card className="hidden xl:block h-svh relative w-full p-4 shadow-xl shadow-blue-gray-900/5 select-none max-w-72">
-      <div className=" flex items-center gap-2 pt-4 pb-1 ml-2">
+    <Card className="hidden xl:block h-svh relative w-full p-4 shadow-xl shadow-blue-gray-900/5 select-none max-w-96">
+      <div className=" flex items-center gap-2 pt-4 pb-1 ml-2 w-full">
         <Image src={logo} alt="logo" width={42} height={42}  className="h-11 my-2" />
         <p className="text-md font-medium">Rwa Suplementos</p>
       </div>
 
-      <div className="p-2">
+      <div className="p-2 w-full">
         {/*  @ts-expect-error */}
         <Input
           icon={<MagnifyingGlassIcon className="h-5 w-5" />}
@@ -74,7 +89,7 @@ const Sidebar = () => {
 
       {/*  @ts-expect-error */}
       <List>
-        <div className="overflow-auto max-h-[calc(100vh-200px)] pb-10 ">
+        <div className="overflow-auto max-h-[calc(100vh-200px)] pb-10 w-full">
           {filteredItems.map((item: {icon: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; label: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }, index: Key | null | undefined) => (
             //  @ts-expect-error
             <ListItem className="my-1" key={index} onClick={() => handleNavigate(item.path)}>

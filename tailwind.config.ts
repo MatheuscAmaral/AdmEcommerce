@@ -14,6 +14,8 @@ const config = withMT({
   			sans: ['Poppins', 'Helvetica', 'Arial', 'sans-serif']
   		},
   		colors: {
+				primaryColor: '#063eee',
+				secondaryColor: '#0734bf',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
