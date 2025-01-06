@@ -22,6 +22,7 @@ import { FaUserAlt, FaHome, FaUsers } from "react-icons/fa";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { FaTruckRampBox } from "react-icons/fa6";
 import { HiCreditCard } from "react-icons/hi2";
+import { RiSecurePaymentFill } from "react-icons/ri";
 import Image from "next/image";
 import logoObj from "../../images/rwalogo2.png";
 
@@ -56,6 +57,11 @@ const Sidebar = () => {
           label: "Clientes",
           icon: <FaUsers fontSize={24} />,
           path: "/clients",
+        },
+        {
+          label: "Formas ",
+          icon: <RiSecurePaymentFill fontSize={25} />,
+          path: "/payment-methods",
         },
         {
           label: "Gateways",

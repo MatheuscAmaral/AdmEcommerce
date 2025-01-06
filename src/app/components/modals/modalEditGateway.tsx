@@ -125,7 +125,7 @@ const ModalEditGateways: React.FC<ModalEditGatewaysProps> = ({isOpen, onClose, r
               </div>
             </section>
           <DialogFooter className=" mt-5 bg-white">
-            <Button type="submit" className="bg-blue-900 text-white hover:bg-blue-800">
+            <Button type="submit" className="bg-blue-900 text-white hover:bg-secondaryColor">
               {
                 loading ? (
                   <TbLoader3 className=" animate-spin "/>

@@ -9,6 +9,7 @@ export interface IOrders {
   zip_code: string,
   street: string,
   city: string,
+  invoice_id: string,
   uf: string,
   number: number,
   neighborhood: number,

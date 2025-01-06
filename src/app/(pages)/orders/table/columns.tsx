@@ -132,6 +132,27 @@ export const columns: ColumnDef<IOrders>[] = [
     },
   },   
   {
+    accessorKey: "invoice_id",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Código da fatura
+          <PiCaretUpDownBold className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      return (
+        <div className="capitalize">
+          {`${row.getValue("invoice_id") ? row.getValue("invoice_id") : "-"}`}
+        </div>
+      );
+    },
+  },   
+  {
     accessorKey: "zip_code",
     header: ({ column }) => {
       return (
@@ -268,18 +289,47 @@ export const columns: ColumnDef<IOrders>[] = [
     },
     cell: ({ row }) => (
       <div className="capitalize">
-        {
-          row.getValue("status") == 1 && "Em análise"
-        }
-        {
-          row.getValue("status") == 2 && "Bloqueado"
-        }
-        {
-          row.getValue("status") == 3 && "Cancelado"
-        }
-        {
-          row.getValue("status") == 4 && "Faturado"
-        }
+          {
+              row.getValue("status") == 1 && (
+                  "Aguardando pagamento"
+              )
+          }
+
+          {
+              row.getValue("status") == 2 && (
+                  "Pagamento aprovado"
+              )
+          }
+          
+          {
+              row.getValue("status") == 3 && (
+                  "Em separação"
+              )
+          }
+
+          {
+              row.getValue("status") == 4 && (
+                  "Em transito"
+              )
+          }
+
+          {
+              row.getValue("status") == 5 && (
+                  "Em rota de entrega"
+              )
+          }
+
+          {
+              row.getValue("status") == 6 && (
+                  "Faturado"
+              )
+          }
+
+          {
+              row.getValue("status") == 7 && (
+                  "Cancelado"
+              )
+          }
       </div>
     ),
   },

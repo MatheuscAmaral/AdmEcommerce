@@ -20,30 +20,26 @@ import { TbLoader3 } from "react-icons/tb";
 
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { FormEvent, useContext, useEffect, useState } from "react"
 import { ReloadContext } from "@/hooks/reloadContent";
-import { IClients } from "@/interfaces/IClients";
+import { IPaymentMethods } from "@/interfaces/IPaymentsMethods";
+import { FormEvent, useContext, useEffect, useState } from "react"
 import api from "../../../../api"
 
-interface ModalEditClientsProps {
+interface ModalEditPaymentsProps {
   isOpen: boolean;
   onClose: () => void;
-  row: IClients
+  row: IPaymentMethods
 }
 
-const ModalEditClients: React.FC<ModalEditClientsProps> = ({isOpen, onClose, row }) => {
-  const [name, setName] = useState(row.name || "");
-  const [mail, setMail] = useState(row.email || "");
-  const [cpf, setCpf] = useState(row.cpf || "");
+const ModalEditPayments: React.FC<ModalEditPaymentsProps> = ({isOpen, onClose, row }) => {
+  const [description, setDescription] = useState(row.description || "");
   const [status, setStatus] = useState(String(row.status) || "");
   const [loading, setLoading] = useState(false);
   const { updatedData } = useContext(ReloadContext);
 
   useEffect(() => {
    if (isOpen) {
-    setName(row.name || "");
-    setMail(row.email || "");
-    setCpf(row.cpf || "");
+    setDescription(row.description || "");
     setStatus(String(row.status) || "");
    }
   }, [isOpen])
@@ -56,29 +52,26 @@ const ModalEditClients: React.FC<ModalEditClientsProps> = ({isOpen, onClose, row
       closeButton.click();
     }
    
-    setName("");
-    setMail("");
-    setCpf("");
+    setDescription("");
     setStatus("");
   }
 
-  const editClient = async (e: FormEvent) => {
+  const editPaymentMethods = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     try {
       const data = {
-        name: name,
-        email: mail,
-        cpf: cpf,
+        description,
         status: Number(status)
       }
 
-      await api.put(`/users/${row.id}`, data);
+      await api.put(`/payments/${row.id}`, data);
       
       updatedData();
       closeModal();
     } catch (error) {
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -90,56 +83,24 @@ const ModalEditClients: React.FC<ModalEditClientsProps> = ({isOpen, onClose, row
           <DialogHeader>
             <DialogTitle>Editar Cliente</DialogTitle>
             <DialogDescription>
-              Preencha as informações do cliente aqui, quando estiver pronto, clique em salvar.
+              Preencha as informações da foram de pagamento aqui, quando estiver pronto, clique em salvar.
             </DialogDescription>
           </DialogHeader>
 
-          <form onSubmit={(e) => editClient(e)}>
+          <form onSubmit={(e) => editPaymentMethods(e)}>
             <section className="flex flex-col gap-6 py-4 pb-10 justify-start w-full overflow-y-auto relative" style={{ maxHeight: "600px" }}>
               <div className="flex flex-col gap-2 w-full">
-                <Label htmlFor="name">
-                  Nome:
+                <Label htmlFor="description">
+                  Descrição:
                 </Label>
 
                 <Input
-                  id="name"
+                  id="description"
                   type="text"
-                  value={name != "" ? name : name}
-                  onChange={(e) => setName(e.target.value)}
+                  value={description != "" ? description : description}
+                  onChange={(e) => setDescription(e.target.value)}
                   className="col-span-3 max-w-full"
-                  placeholder="Digite o nome do cliente..."
-                  required
-                />
-              </div>
-              
-              <div className="flex flex-col gap-2 w-full">
-                <Label htmlFor="mail">
-                  E-mail:
-                </Label>
-
-                <Input
-                  id="mail"
-                  type="text"
-                  value={mail != "" ? mail : mail}
-                  onChange={(e) => setMail(e.target.value)}
-                  className="col-span-3 max-w-full"
-                  placeholder="Digite o e-mail do cliente..."
-                  required
-                />
-              </div>
-
-              <div className="flex flex-col gap-2 w-full">
-                <Label htmlFor="cpf">
-                  Cpf:
-                </Label>
-
-                <Input
-                  id="cpf"
-                  type="text"
-                  value={cpf != "" ? cpf : cpf}
-                  onChange={(e) => setCpf(e.target.value)}
-                  className="col-span-3 max-w-full"
-                  placeholder="Digite o cpf do cliente..."
+                  placeholder="Digite a descricão da forma de pagamento..."
                   required
                 />
               </div>
@@ -180,4 +141,4 @@ const ModalEditClients: React.FC<ModalEditClientsProps> = ({isOpen, onClose, row
   )
 }
 
-export default ModalEditClients;
+export default ModalEditPayments;

@@ -90,6 +90,28 @@ export const columns: ColumnDef<IClients>[] = [
     },
   },   
   {
+    accessorKey: "customer_id",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Código no gateway
+          <PiCaretUpDownBold className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+  
+      return (
+        <div className="capitalize">
+          {`${row.getValue("customer_id") != null ? row.getValue("customer_id") : "-"}`}
+        </div>
+      );
+    },
+  },   
+  {
     accessorKey: "zip_code",
     header: ({ column }) => {
       return (
@@ -131,7 +153,6 @@ export const columns: ColumnDef<IClients>[] = [
       </div>
     ),
   },
-
   {
     accessorKey: "neighborhood",
     header: ({ column }) => {

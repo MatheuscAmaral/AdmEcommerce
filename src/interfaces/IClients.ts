@@ -6,5 +6,6 @@ export interface IClients {
   zip_code: string,
   city: string,
   neighborhood: number,
+  customer_id: string | null,
   status: number
 }

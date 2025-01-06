@@ -15,7 +15,6 @@ import {
   useReactTable,
 } from "@tanstack/react-table"
 import { Search } from "lucide-react"
-import ModalProducts from "../../../components/modals/modalCreateProducts";
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -35,11 +34,12 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { TbAdjustments } from "react-icons/tb";
-import type { IClients } from "@/interfaces/IClients";
+import { IPaymentMethods } from "@/interfaces/IPaymentsMethods";
+import ModalCreatePayment from "@/app/components/modals/modalCreatePayment";
 
 interface DataProps {
-  data: Array<IClients>;
-  columns: ColumnDef<IClients, any>[]
+  data: Array<IPaymentMethods>;
+  columns: ColumnDef<IPaymentMethods, any>[]
 }
 
 export function DataTable({ data, columns }: DataProps ) {
@@ -73,14 +73,14 @@ export function DataTable({ data, columns }: DataProps ) {
   return (
     <div className="w-full">
       <div className="flex items-center py-4">
-        <div className="relative w-full max-w-96">
+        <div className="relative w-full max-w-md">
           <Input
-            placeholder="Pesquisar pelo nome do cliente..."
+            placeholder="Pesquisar pela descrição da forma de pagamento..."
             value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
             onChange={(event) =>
               table.getColumn("name")?.setFilterValue(event.target.value)
             }
-            className="max-w-sm bg-white relative"
+            className="max-w-md bg-white relative"
           />
 
           <Search className="ml-2 h-4 w-4 absolute top-2 right-3" />
@@ -110,19 +110,9 @@ export function DataTable({ data, columns }: DataProps ) {
                   >
                     {column.id == "id" && "Código"}
 
-                    {column.id == "name" && "Nome"}
+                    {column.id == "description" && "Descrição"}
 
-                    {column.id == "email" && "E-mail"}
-
-                    {column.id == "cpf" && "Cpf"}
-
-                    {column.id == "customer_id" && "Código no gateway"}
-
-                    {column.id == "zip_code" && "Cep"}
-
-                    {column.id == "city" && "Cidade"}
-
-                    {column.id == "neighborhood" && "Bairro"}
+                    {column.id == "type" && "Tipo"}
 
                     {column.id == "status" && "Status"}
                   </DropdownMenuCheckboxItem>
@@ -131,6 +121,7 @@ export function DataTable({ data, columns }: DataProps ) {
           </DropdownMenuContent>
         </DropdownMenu>
 
+        <ModalCreatePayment />
       </div>
 
       <div className="rounded-md border my-3">

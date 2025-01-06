@@ -89,7 +89,7 @@ const ModalCreateGateway = () => {
                   value={description != "" ? description : description}
                   onChange={(e) => setDescription(e.target.value)}
                   className="col-span-3 max-w-full"
-                  placeholder="Digite a descrição do produto..."
+                  placeholder="Digite a descrição do gateway..."
                   required
                 />
               </div>
@@ -115,7 +115,7 @@ const ModalCreateGateway = () => {
               </div>
             </section>
           <DialogFooter className=" mt-5 bg-white">
-            <Button type="submit" className="bg-blue-900 text-white hover:bg-blue-800">
+            <Button type="submit" className="bg-blue-900 text-white hover:bg-secondaryColor">
               {
                 loading ? (
                   <TbLoader3 className=" animate-spin "/>

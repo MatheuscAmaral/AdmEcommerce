@@ -232,16 +232,19 @@ const ModalEditOrders: React.FC<ModalEditOrdersProps> = ({isOpen, onClose, row }
                     <SelectValue placeholder="Selecione o status" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="1">Em análise</SelectItem>
-                    <SelectItem value="2">Bloqueado</SelectItem>
-                    <SelectItem value="3">Cancelado</SelectItem>
-                    <SelectItem value="4">Faturado</SelectItem>
+                    <SelectItem value="1">Aguardando pagamento</SelectItem>
+                    <SelectItem value="2">Pagamento aprovado</SelectItem>
+                    <SelectItem value="3">Em separação</SelectItem>
+                    <SelectItem value="4">Em transito</SelectItem>
+                    <SelectItem value="5">Em rota de entrega</SelectItem>
+                    <SelectItem value="6">Faturado</SelectItem>
+                    <SelectItem value="7">Cancelado</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
             </section>
           <DialogFooter className=" mt-5 bg-white">
-            <Button type="submit" className="bg-blue-900 text-white hover:bg-blue-800">
+            <Button type="submit" className="bg-blue-900 text-white hover:bg-secondaryColor">
               {
                 loading ? (
                   <TbLoader3 className=" animate-spin "/>
