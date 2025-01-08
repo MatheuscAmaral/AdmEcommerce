@@ -70,7 +70,7 @@ export function DataTable({ data, columns }: DataProps ) {
   });
 
   return (
-    <div className="w-full">
+    <div className="w-full max-w-full">
       <div className="flex items-center py-4">
         <div className="relative w-full max-w-96">
           <Input
@@ -133,17 +133,16 @@ export function DataTable({ data, columns }: DataProps ) {
               })}
           </DropdownMenuContent>
         </DropdownMenu>
-
       </div>
 
-      <div className="rounded-md border my-3">
-        <Table className="bg-white rounded-md text-center">
+      <div className=" border my-3 bg-white rounded-md">
+        <Table className="whitespace-nowrap">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id} className="text-center">
+                    <TableHead key={header.id} className="text-center p-1">
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -162,6 +161,7 @@ export function DataTable({ data, columns }: DataProps ) {
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
+                  className="text-center p-2"
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>

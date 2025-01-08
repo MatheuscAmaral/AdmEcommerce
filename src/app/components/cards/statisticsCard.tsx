@@ -4,6 +4,7 @@ import { IoCart } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import { FaTruckRampBox } from "react-icons/fa6";
 import { FaUsers } from "react-icons/fa";
+import { RiSecurePaymentFill } from "react-icons/ri";
 
 const StatisticsCard = ({ data, type, route }: { data: number, type: string, route: string }) => {
   const router = useRouter();
@@ -27,10 +28,13 @@ const StatisticsCard = ({ data, type, route }: { data: number, type: string, rou
               ) || 
               type === "Clientes" && (
                 <FaUsers className="text-gray-800" fontSize={30} />
+              ) ||
+              type === "Formas de pagamento" && (
+                <RiSecurePaymentFill className="text-gray-800" fontSize={30} />
               ) 
             }
             <p className="text-3xl font-bold ">
-              {data}
+              {data || 0}
             </p>
           </div>
       </div>

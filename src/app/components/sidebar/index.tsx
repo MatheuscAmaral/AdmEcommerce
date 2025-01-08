@@ -78,7 +78,7 @@ const Sidebar = () => {
 
   return (
     // @ts-expect-error
-    <Card className="hidden xl:block h-svh relative w-full p-4 shadow-xl shadow-blue-gray-900/5 select-none max-w-96">
+    <Card className="hidden xl:block h-svh relative w-full p-4 shadow-xl shadow-blue-gray-900/5 select-none max-w-72">
       <div className=" flex items-center gap-2 pt-4 pb-1 ml-2 w-full">
         <Image src={logo} alt="logo" width={42} height={42}  className="h-11 my-2" />
         <p className="text-md font-medium">Rwa Suplementos</p>
