@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Adm E-commerce
 
-## Getting Started
+Bem-vindo ao repositório do **Adm E-commerce**, uma aplicação desenvolvida em **Next.js** para gerenciar e administrar todos os aspectos do seu e-commerce de suplementos. Este painel oferece ferramentas para criação e gerenciamento de produtos, pedidos, formas de pagamento, gateways e muito mais.
 
-First, run the development server:
+## Descrição
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+O **Adm E-commerce** fornece um ambiente completo para gerenciar de forma centralizada todo o seu e-commerce. Criado com **Next.js**, o painel garante uma experiência fluida, responsiva e de alta performance para os administradores e colaboradores que precisam gerenciar o estoque, as vendas, os clientes e outros recursos essenciais do negócio.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tecnologias Utilizadas
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Next.js** – Framework React para desenvolvimento de aplicações web (server-side e client-side).
+- **React.js** – Biblioteca JavaScript para construção de interfaces de usuário.
+- **Axios** – Biblioteca para requisições HTTP e integração com a API do e-commerce.
+- **Redux / React Context** (opcional) – Gerenciamento global de estado para dados de usuários, produtos e pedidos.
+- **TypeScript** (opcional) – Fornece tipagem estática para maior segurança e manutenibilidade do código.
+- **CSS Modules / Styled Components / Tailwind CSS** – (dependendo da abordagem de estilização adotada).
+- **Node.js & npm / yarn** – Ambiente e gerenciador de pacotes para desenvolvimento.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Funcionalidades Principais
 
-## Learn More
+1. **Gerenciamento de Produtos**  
+   - Criar, editar e remover produtos.  
+   - Upload de imagens e gerenciamento de estoque.  
+   - Organização de produtos por categorias e tags.
 
-To learn more about Next.js, take a look at the following resources:
+2. **Gerenciamento de Pedidos**  
+   - Visualizar a lista de pedidos em tempo real.  
+   - Atualizar status de pedidos (processando, enviado, entregue, etc.).  
+   - Exibir detalhes do pedido, produtos, valores e dados do cliente.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Formas de Pagamento e Gateways**  
+   - Configurar e gerenciar integrações com gateways de pagamento (Asaas, PayPal, PagSeguro, etc.).  
+   - Ativar ou desativar métodos de pagamento e definir taxas ou descontos.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. **Gerenciamento de Usuários**  
+   - Controle de permissões e níveis de acesso (administradores, operadores, etc.).  
+   - Visualização de cadastro de clientes (nome, email, histórico de compras, etc.).
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5. **Layout Responsivo**  
+   - Interface adaptada para diferentes dispositivos e tamanhos de tela.  
+   - Garantia de produtividade independente do dispositivo utilizado.
